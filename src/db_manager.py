@@ -34,12 +34,28 @@ class DatabaseManager:
             cwes JSONB,
             cpes JSONB,
             references_links JSONB,
-            discovered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             is_matched BOOLEAN DEFAULT FALSE,
-            affected_assets JSONB
+            affected_assets JSONB,
+            discovered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """
+        
+        # NEW: Enterprise Asset Inventory Table
+        create_asset_table = """
+        CREATE TABLE IF NOT EXISTS assets_inventory (
+            asset_id VARCHAR(50) PRIMARY KEY,
+            hostname VARCHAR(100),
+            ip_address VARCHAR(50),  -- Added for Tenable integration
+            vendor VARCHAR(100),
+            product VARCHAR(100),
+            version VARCHAR(50),
+            cpe_string VARCHAR(255),
+            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """
+        
         self.cursor.execute(create_cve_table)
+        self.cursor.execute(create_asset_table)
         print("[+] Database schema is ready.")
 
     def save_cves(self, cve_list: list):
