@@ -1,4 +1,4 @@
-# 🚀 Project Nexus: Enterprise Vulnerability Intelligence Platform
+# 🚀 LaTech CTI: Enterprise Vulnerability Intelligence Platform
 
 ![Project Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-green)
